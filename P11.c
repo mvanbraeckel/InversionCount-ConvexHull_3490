@@ -3,7 +3,7 @@
  * @course CIS*3490: Analysis and Design of Computer Algorithms - A2
  * @version 09/02/2019
  * @file P11.c
- * @brief A2 Problem 1.3 - a) brute force bubble count to find the number of inversions 
+ * @brief A2 Problem 1.3 - a) brute force selection count to find the number of inversions 
  */
 
 #include "a2header.h"

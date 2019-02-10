@@ -37,12 +37,14 @@ void p21() {
 
 // ======================================================================
 
-// line through 2 pts: ax + by = c ; where a = y2 - y1, b = x1 - x2, c = x1y2 - y1x2
-// The points are part of the convex hull if all other points are on the same side:
-//      To find which side a Point P=(x,y) falls on in regards to a Line A=(x1,y1) to B=(x2,y2):
-//          d=(x−x1)(y2−y1)−(y−y1)(x2−x1) ; where d<0 is LS, d>0 is RS, & d=0 is in-line
-
-// (i.e. ax+by-c has the same sign for all the other points) 
+/**
+ * Uses brute force to solve the convex hull problem for a set of 30000 2D points
+ * Two points A and B are part of the convex hull if all other points are in-line or on the same side of the line as AB,
+ *      A=(x1,y1), B=(x2,y2), P(x,y)  |  d=(x−x1)(y2−y1)−(y−y1)(x2−x1) ; where d<0 is LS, d>0 is RS, & d=0 is in-line
+ * @param Point p[] -the array of 30000 Points to check
+ * @param Point hull_set[] -the array of Points that will contain the convex hull
+ * @return the number of points in the convex hull
+ */
 int brute_convex_hull(Point p[30000], Point hull_set[30000]) {
     int h = 0; // holds #of bounding points in the convex hull set
 
@@ -93,8 +95,10 @@ void read_points(char* filename, Point p[30000]) {
         // read one Point at a time until the end of the file
         int i = 0;
         while(!feof(fp) && i < 30000) {
+            // read in x-value
             fscanf(fp, " %s ", buffer);
             p[i].x = atoi(buffer);
+            // read in y-value
             fscanf(fp, " %s ", buffer);
             p[i].y = atoi(buffer);
             i++;
