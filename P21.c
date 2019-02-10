@@ -44,6 +44,7 @@ void p21() {
  * @param Point p[] -the array of 30000 Points to check
  * @param Point hull_set[] -the array of Points that will contain the convex hull
  * @return the number of points in the convex hull
+ * https://math.stackexchange.com/questions/274712/calculate-on-which-side-of-a-straight-line-is-a-given-point-located
  */
 int brute_convex_hull(Point p[30000], Point hull_set[30000]) {
     int h = 0; // holds #of bounding points in the convex hull set
