@@ -7,14 +7,16 @@
 CC = gcc
 CFLAGS = -g -Wall -std=c11 -pedantic
 
-all: P11 main git
+all: P11 P21 main git
 
 main: P11 main.c
 	$(CC) $(CFLAGS) -c main.c -o bin/main.o
-	$(CC) $(CFLAGS) bin/main.o bin/P11.o -o bin/run
+	$(CC) $(CFLAGS) bin/*.o -o bin/run
 
 P11: P11.c
 	$(CC) $(CFLAGS) -c P11.c -o bin/P11.o
+P21: P21.c
+	$(CC) $(CFLAGS) -c P21.c -o bin/P21.o
 
 git: *.c makefile
 	git add makefile

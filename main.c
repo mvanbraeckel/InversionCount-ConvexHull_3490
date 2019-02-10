@@ -19,8 +19,8 @@ int main(int argc, char* argv[]) {
     while(1) {
         printf("\n1. P11.c - Brute Force (Bubble Sort) Inversion Count\n" \
                 "2. P12.c - Recursive Divide-and-Conquer (Mergesort) Inversion Count\n" \
-                "3. P21.c - Brute Force Convex Hull Algorithm\n" \
-                "4. P22.c - Recursive Divide-and-Conquer (Quicksort) Convex Hull Algorithm\n" \
+                "3. P21.c - Brute Force Algorithm to Solve Convex Hull Problem\n" \
+                "4. P22.c - Recursive Divide-and-Conquer Quickhull Algorithm\n" \
                 "5. Exit\n" \
                 "Enter a code (1 – 5) and hit Return\n" \
                 "algos/> ");
@@ -39,7 +39,7 @@ int main(int argc, char* argv[]) {
             printf("\noption 2\n");
 
         } else if(menu_input[0] == '3') {         // ================================= 3 =================================
-            printf("\noption 3\n");
+            p21();
 
         } else if(menu_input[0] == '4') {         // ================================= 4 =================================
             printf("\noption 4\n");

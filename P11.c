@@ -3,22 +3,21 @@
  * @course CIS*3490: Analysis and Design of Computer Algorithms - A2
  * @version 09/02/2019
  * @file P11.c
- * @brief A2 Problem 1.3 - a) brute force bubble sort to count number of inversions 
+ * @brief A2 Problem 1.3 - a) brute force bubble count to find the number of inversions 
  */
 
 #include "a2header.h"
 
 /**
- * Brute force algorithm that counts number of inversions in 50000 integers read from
- * data_1.txt using Bubble Sort algorithm
+ * Brute force algorithm that counts number of inversions in 50000 integers
+ * read from data_1.txt using Bubble Sort-based counting
  */
 void p11() {
     // declare variables
     int arr[50000];
     int count = 0;
     struct timeb t_start, t_end;
-    int t_diff;
-
+    
     // read in the data
     read_ints("data_1.txt", arr);
     
@@ -28,9 +27,11 @@ void p11() {
     ftime(&t_end);
 
     // calc execution time, then display results
-    t_diff = (int)( 1000.0*(t_end.time - t_start.time) + (t_end.millitm - t_start.millitm) );
-    printf("Inversion count = %d | time = %d milliseconds\n", count, t_diff);
+    int t_elapsed = (int)( 1000.0*(t_end.time - t_start.time) + (t_end.millitm - t_start.millitm) );
+    printf("Inversion count = %d | time = %d milliseconds\n", count, t_elapsed);
 }
+
+// ======================================================================
 
 /**
  * Counts the number of inversions in the array
@@ -49,11 +50,12 @@ void bubble_count(int arr[50000], int *count) {
 }
 
 /**
+ * Reads in up to 50000 integers from a file
  * @param char* filename -the name of the text file being read
- * @param int arr[] -the created integer array of 50,000
+ * @param int arr[] -the integer array of 50,000 to be loaded
  */
 void read_ints(char* filename, int arr[50000]) {
-    char buffer[31] = ""; //30 char max
+    char buffer[51] = ""; //50 char max
 
     FILE *fp = fopen(filename, "r");
     // checks if fopen messed up
