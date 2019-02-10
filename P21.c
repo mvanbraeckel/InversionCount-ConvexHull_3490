@@ -26,9 +26,9 @@ void p21() {
     //int count = brute_convex_hull(points, hull_set);
 
     for(int i = 0; i < 30000; i++) {
-        printf("\tPoint %d: (%lf, %lf)\n", i+1, points[i].x, points[i].y);
+        printf("\tPoint %d: (%8.1lf, %8.1lf)\n", i+1, points[i].x, points[i].y);
     }
-    
+
     ftime(&t_end);
 
     // calc execution time, then display results
