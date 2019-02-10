@@ -10,7 +10,7 @@
 
 /**
  * Brute force algorithm that counts number of inversions in 50000 integers
- * read from data_1.txt using Bubble Sort-based counting
+ * read from data_1.txt using Selection Sort-based counting
  */
 void p11() {
     // declare variables
@@ -23,7 +23,7 @@ void p11() {
     
     // count #of inversions, also track time
     ftime(&t_start);
-    bubble_count(arr, &count);
+    selection_count(arr, &count);
     ftime(&t_end);
 
     // calc execution time, then display results
@@ -38,7 +38,7 @@ void p11() {
  * @param int arr[] -the array of 50000 integers to check
  * @param int *count -pass by ref to store number of inversions
  */
-void bubble_count(int arr[50000], int *count) {
+void selection_count(int arr[50000], int *count) {
     *count = 0;
     for(int i = 0; i < 49999; i++) {
         for(int j = i+1; j < 50000; j++) {

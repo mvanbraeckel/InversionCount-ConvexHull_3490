@@ -34,7 +34,7 @@ void p21();
 void flush_input(char *input);
 
 void read_ints(char* filename, int arr[50000]);
-void bubble_count(int arr[50000], int *count);
+void selection_count(int arr[50000], int *count);
 
 void read_points(char* filename, Point p[30000]);
 int brute_convex_hull(Point p[30000], Point hull_set[30000]);

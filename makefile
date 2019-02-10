@@ -9,7 +9,7 @@ CFLAGS = -g -Wall -std=c11 -pedantic
 
 all: P11 P21 main git
 
-main: P11 main.c
+main: P11 P21 main.c a2header.h
 	$(CC) $(CFLAGS) -c main.c -o bin/main.o
 	$(CC) $(CFLAGS) bin/*.o -o bin/run
 

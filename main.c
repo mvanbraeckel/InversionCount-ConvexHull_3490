@@ -17,7 +17,7 @@ int main(int argc, char* argv[]) {
 
     // infinite menu loop, only ending program with '7' as input
     while(1) {
-        printf("\n1. P11.c - Brute Force (Bubble Sort) Inversion Count\n" \
+        printf("\n1. P11.c - Brute Force (Selection Sort) Inversion Count\n" \
                 "2. P12.c - Recursive Divide-and-Conquer (Mergesort) Inversion Count\n" \
                 "3. P21.c - Brute Force Algorithm to Solve Convex Hull Problem\n" \
                 "4. P22.c - Recursive Divide-and-Conquer Quickhull Algorithm\n" \
