@@ -14,7 +14,9 @@
  * read from data_1.txt using mergesort-based algorithm
  */
 void p12() {
-    int arr[] = {12, 11, 13, 5, 6, 7};
+
+    int arr[50000];
+    read_ints("data_1.txt", arr);
     int arr_size = sizeof(arr)/sizeof(arr[0]);
 
     printf("Given array is \n");
@@ -102,7 +104,11 @@ void mergeSort(int arr[], int l, int r) {
 /* Function to print an array */
 void printArray(int A[], int size) { 
     int i; 
-    for (i=0; i < size; i++) 
-        printf("%d ", A[i]); 
+    for (i=1; i <= size; i++) {
+        printf("%d ", A[i-1]); 
+        if(i % 5 == 0) {
+            printf("\n");
+        }
+    }
     printf("\n"); 
 }
