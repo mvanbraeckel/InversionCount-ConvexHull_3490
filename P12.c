@@ -24,7 +24,6 @@ void p12() {
 
     printf("\nSorted array is \n");
     printArray(arr, arr_size);
-    return 0;
 }
 
 // Merges two subarrays of arr[]. 
