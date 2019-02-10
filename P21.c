@@ -29,9 +29,9 @@ void p21() {
     int t_elapsed = (int)( 1000.0*(t_end.time - t_start.time) + (t_end.millitm - t_start.millitm) );
     
     printf("\n\tBounding Convex Hull Set:\n\t=========================\n");
-    /*for(int i = 0; i < count; i++) {
+    for(int i = 0; i < count; i++) {
         printf("\tPoint %d: (%8.1lf, %8.1lf)\n", i+1, points[i].x, points[i].y);
-    }*/
+    }
     printf("Brute Force Convex Hull Solution Execution Time = %d milliseconds\n", t_elapsed);
 }
 
@@ -66,7 +66,7 @@ int brute_convex_hull(Point p[30000], Point hull_set[30000]) {
 
             // if it's good, add to bounding set and start checking a new one
             if(all_left) {
-                printf("\tPoint %d: (%8.1lf, %8.1lf)\n", h+1, p[i].x, p[i].y);
+                //printf("\tPoint %d: (%8.1lf, %8.1lf)\n", h+1, p[i].x, p[i].y);
                 hull_set[h] = p[i];
                 h++;
                 break;
