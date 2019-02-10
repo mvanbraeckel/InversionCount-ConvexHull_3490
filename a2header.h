@@ -13,6 +13,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <sys/timeb.h>
 
 // ======================================================================
 void p11();
@@ -22,5 +23,6 @@ void p11();
 void flush_input(char *input);
 
 void read_ints(char* filename, int arr[50000]);
+void bubble_count(int arr[50000], int *count);
 
 #endif

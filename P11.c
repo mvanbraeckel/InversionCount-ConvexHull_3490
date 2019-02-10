@@ -8,13 +8,40 @@
 
 #include "a2header.h"
 
+/**
+ * Brute force algorithm that counts number of inversions in 50000 integers read from
+ * data_1.txt using Bubble Sort algorithm
+ */
 void p11() {
+    // declare variables
     int arr[50000];
+    int count = 0;
+    struct timeb t_start, t_end;
+    int t_diff;
+
+    // read in the data
     read_ints("data_1.txt", arr);
-    for(int i = 1; i <= 50000; i++) {
-        printf("%d ", arr[i-1]);
-        if(i % 5 == 0) printf("\n");
+    
+    // count #of inversions, also track time
+    ftime(&t_start);
+    bubble_count(arr, &count);
+    ftime(&t_end);
+
+    // calc execution time, then display results
+    t_diff = (int) (1000.0 * (t_end.time - t_start.time) + (t_end.millitm - t_start.millitm));
+    printf("Inversion count = %d | time = %d milliseconds\n", count, t_diff);
+}
+
+void bubble_count(int arr[50000], int *count) {
+    *count = 0;
+    for(int i = 0; i < 49999; i++) {
+        for(int j = i+1; j < 50000; j++) {
+            if(arr[i] > arr[j]) {
+                (*count)++;
+            }
+        }
     }
+    return;
 }
 
 /**
