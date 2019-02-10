@@ -22,17 +22,16 @@ void p21() {
     
     // determine bounding convex hull set
     ftime(&t_start);
-
-    //int count = brute_convex_hull(points, hull_set);
-
-    for(int i = 0; i < 30000; i++) {
-        printf("\tPoint %d: (%8.1lf, %8.1lf)\n", i+1, points[i].x, points[i].y);
-    }
-
+    int count = brute_convex_hull(points, hull_set);
     ftime(&t_end);
 
     // calc execution time, then display results
     int t_elapsed = (int)( 1000.0*(t_end.time - t_start.time) + (t_end.millitm - t_start.millitm) );
+    
+    printf("Bounding Convex Hull Set:\n=========================\n");
+    for(int i = 0; i < count; i++) {
+        printf("\tPoint %d: (%8.1lf, %8.1lf)\n", i+1, points[i].x, points[i].y);
+    }
     printf("Brute Force Convex Hull Solution Execution Time = %d milliseconds\n", t_elapsed);
 }
 
@@ -45,7 +44,7 @@ void p21() {
 
 // (i.e. ax+by-c has the same sign for all the other points) 
 int brute_convex_hull(Point p[30000], Point hull_set[30000]) {
-    int h = 0; // number of bounding points in the convex hull set
+    int h = 0; // holds #of bounding points in the convex hull set
 
     for(int i = 0; i < 30000; i++) {
         for(int j = 0; j < 30000; j++) {
