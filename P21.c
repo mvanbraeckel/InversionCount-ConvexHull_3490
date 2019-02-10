@@ -29,9 +29,9 @@ void p21() {
     int t_elapsed = (int)( 1000.0*(t_end.time - t_start.time) + (t_end.millitm - t_start.millitm) );
     
     printf("\n\tBounding Convex Hull Set:\n\t=========================\n");
-    for(int i = 0; i < count; i++) {
+    /*for(int i = 0; i < count; i++) {
         printf("\tPoint %d: (%8.1lf, %8.1lf)\n", i+1, points[i].x, points[i].y);
-    }
+    }*/
     printf("Brute Force Convex Hull Solution Execution Time = %d milliseconds\n", t_elapsed);
 }
 
@@ -46,6 +46,7 @@ void p21() {
 int brute_convex_hull(Point p[30000], Point hull_set[30000]) {
     int h = 0; // holds #of bounding points in the convex hull set
 
+    // create line from Point I to Point J
     for(int i = 0; i < 30000; i++) {
         for(int j = 0; j < 30000; j++) {
             if(i == j) continue; //skip because same point
@@ -65,6 +66,7 @@ int brute_convex_hull(Point p[30000], Point hull_set[30000]) {
 
             // if it's good, add to bounding set and start checking a new one
             if(all_left) {
+                printf("\tPoint %d: (%8.1lf, %8.1lf)\n", i+1, p[i].x, p[i].y);
                 hull_set[h] = p[i];
                 h++;
                 break;
@@ -100,40 +102,3 @@ void read_points(char* filename, Point p[30000]) {
     }
     fclose(fp);
 }
-
-/*for(var i=0; i<points.length; i++) {
-    for(var j=0; j<points.length; j++) {
-        if(i === j) {
-            continue;
-        }
-                                
-        var ptI = points[i];
-        var ptJ = points[j];
-        
-        // Do all other points lie within the half-plane to the right
-        var allPointsOnTheRight = true;
-        for(var k=0; k<points.length; k++) {
-            if(k === i || k === j) {
-                continue;
-            }
-            
-            var d = whichSideOfLine(ptI, ptJ, points[k]);
-            if(d < 0) {
-                allPointsOnTheRight = false;
-                break;
-            }                        
-        }
-        
-        if(allPointsOnTheRight) {
-            console.log("segment " + i + " to " + j);                            
-            var pointAScreen = cartToScreen(ptI, getDocumentWidth(), getDocumentHeight());
-            var pointBScreen = cartToScreen(ptJ, getDocumentWidth(), getDocumentHeight());                                                        
-            drawLineSegment(pointAScreen, pointBScreen);
-        }
-        
-    }
-}
-
-var whichSideOfLine = function(lineEndptA, lineEndptB, ptSubject) {
-    return (ptSubject.x - lineEndptA.x) * (lineEndptB.y - lineEndptA.y) - (ptSubject.y - lineEndptA.y) * (lineEndptB.x - lineEndptA.x);
-};*/
