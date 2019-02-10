@@ -14,18 +14,22 @@
  * read from data_1.txt using mergesort-based algorithm
  */
 void p12() {
-
+    // declare variables
     int arr[50000];
+    int count = 0;
+    struct timeb t_start, t_end;
+    
+    // read in the data
     read_ints("data_1.txt", arr);
-    int arr_size = sizeof(arr)/sizeof(arr[0]);
+    
+    // count #of inversions, also track time
+    ftime(&t_start);
+    mergeSort(arr, 0, 49999);
+    ftime(&t_end);
 
-    printf("Given array is \n");
-    printArray(arr, arr_size);
-
-    mergeSort(arr, 0, arr_size - 1);
-
-    printf("\nSorted array is \n");
-    printArray(arr, arr_size);
+    // calc execution time, then display results
+    int t_elapsed = (int)( 1000.0*(t_end.time - t_start.time) + (t_end.millitm - t_start.millitm) );
+    printf("Inversion count = %d | time = %d milliseconds\n", count, t_elapsed);
 }
 
 // Merges two subarrays of arr[]. 
