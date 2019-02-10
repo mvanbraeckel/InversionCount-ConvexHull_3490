@@ -30,7 +30,7 @@ void p21() {
     
     printf("\n\tBounding Convex Hull Set:\n\t=========================\n");
     for(int i = 0; i < count; i++) {
-        printf("\tPoint %d: (%8.1lf, %8.1lf)\n", i+1, points[i].x, points[i].y);
+        printf("\tPoint %d: (%8.1lf, %8.1lf)\n", i+1, hull_set[i].x, hull_set[i].y);
     }
     printf("Brute Force Convex Hull Solution Execution Time = %d milliseconds\n", t_elapsed);
 }
