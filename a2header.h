@@ -35,6 +35,9 @@ void flush_input(char *input);
 
 void read_ints(char* filename, int arr[50000]);
 void selection_count(int arr[50000], int *count);
+void merge(int arr[], int l, int m, int r);
+void mergeSort(int arr[], int l, int r);
+void printArray(int A[], int size);
 
 void read_points(char* filename, Point p[30000]);
 int brute_convex_hull(Point p[30000], Point hull_set[30000]);

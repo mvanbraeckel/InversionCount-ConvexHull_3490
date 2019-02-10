@@ -30,8 +30,7 @@ void p12() {
 // Merges two subarrays of arr[]. 
 // First subarray is arr[l..m] 
 // Second subarray is arr[m+1..r] 
-void merge(int arr[], int l, int m, int r) 
-{ 
+void merge(int arr[], int l, int m, int r) { 
     int i, j, k; 
     int n1 = m - l + 1; 
     int n2 =  r - m; 
@@ -85,8 +84,7 @@ void merge(int arr[], int l, int m, int r)
   
 /* l is for left index and r is right index of the 
    sub-array of arr to be sorted */
-void mergeSort(int arr[], int l, int r) 
-{ 
+void mergeSort(int arr[], int l, int r) { 
     if (l < r) 
     { 
         // Same as (l+r)/2, but avoids overflow for 
@@ -103,8 +101,7 @@ void mergeSort(int arr[], int l, int r)
 
 /* UTILITY FUNCTIONS */
 /* Function to print an array */
-void printArray(int A[], int size) 
-{ 
+void printArray(int A[], int size) { 
     int i; 
     for (i=0; i < size; i++) 
         printf("%d ", A[i]); 
