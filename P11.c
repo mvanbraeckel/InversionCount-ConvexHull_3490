@@ -28,10 +28,15 @@ void p11() {
     ftime(&t_end);
 
     // calc execution time, then display results
-    t_diff = (int) (1000.0 * (t_end.time - t_start.time) + (t_end.millitm - t_start.millitm));
+    t_diff = (int)( 1000.0*(t_end.time - t_start.time) + (t_end.millitm - t_start.millitm) );
     printf("Inversion count = %d | time = %d milliseconds\n", count, t_diff);
 }
 
+/**
+ * Counts the number of inversions in the array
+ * @param int arr[] -the array of 50000 integers to check
+ * @param int *count -pass by ref to store number of inversions
+ */
 void bubble_count(int arr[50000], int *count) {
     *count = 0;
     for(int i = 0; i < 49999; i++) {
@@ -41,7 +46,6 @@ void bubble_count(int arr[50000], int *count) {
             }
         }
     }
-    return;
 }
 
 /**
