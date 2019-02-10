@@ -28,7 +28,7 @@ void p21() {
     // calc execution time, then display results
     int t_elapsed = (int)( 1000.0*(t_end.time - t_start.time) + (t_end.millitm - t_start.millitm) );
     
-    printf("Bounding Convex Hull Set:\n=========================\n");
+    printf("\n\tBounding Convex Hull Set:\n\t=========================\n");
     for(int i = 0; i < count; i++) {
         printf("\tPoint %d: (%8.1lf, %8.1lf)\n", i+1, points[i].x, points[i].y);
     }
