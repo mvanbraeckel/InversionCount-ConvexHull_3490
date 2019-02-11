@@ -27,9 +27,6 @@ void p21() {
     int count = brute_convex_hull(points, hull_set, size);
     ftime(&t_end);
 
-    // calc execution time, then display results
-    int t_elapsed = (int)( 1000.0*(t_end.time - t_start.time) + (t_end.millitm - t_start.millitm) );
-    
     // selection sort by x-coord so it's a little easier to read
     for(int i = 0; i < count-1; i++) {
         for(int j = i+1; j < count; j++) {
@@ -40,6 +37,9 @@ void p21() {
             }
         }
     }
+
+    // calc execution time, then display results
+    int t_elapsed = (int)( 1000.0*(t_end.time - t_start.time) + (t_end.millitm - t_start.millitm) );
 
     printf("\n\tMinimum Bounding Convex Hull Set:\n\t=================================\n");
     for(int i = 0; i < count; i++) {
@@ -59,7 +59,7 @@ void p21() {
  * @return the number of points in the convex hull
  * https://math.stackexchange.com/questions/274712/calculate-on-which-side-of-a-straight-line-is-a-given-point-located
  */
-int brute_convex_hull(Point p[30000], Point hull_set[], int size) {
+int brute_convex_hull(Point p[], Point hull_set[], int size) {
     int h = 0; // counts #of bounding points in the convex hull set
 
     // create line from Point I to Point J
@@ -80,7 +80,7 @@ int brute_convex_hull(Point p[30000], Point hull_set[], int size) {
                 }
             }
 
-            // if it's good, add both to bounding set (make sure it's not already added)
+            // if it's good, add both to bounding set (make sure they're not already added)
             if(all_left) {
                 //printf("\tPoint %d: (%8.1lf, %8.1lf)\n", h+1, p[i].x, p[i].y);
                 bool unique1 = true;
