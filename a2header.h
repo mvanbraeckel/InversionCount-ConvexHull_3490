@@ -40,7 +40,7 @@ void mergesort(int arr[], int temp[], int left, int right, int *count);
 void merge(int arr[], int temp[], int left, int mid, int right, int *count); 
 
 void read_points(char* filename, Point p[30000]);
-int brute_convex_hull(Point p[30000], Point hull_set[30000]);
+int brute_convex_hull(Point p[30000], Point hull_set[], int size);
 void printHull(Point a[], int n, Point hull_set[30000], int *count);
 void quickHull(Point a[], int n, Point p1, Point p2, int side, Point hull_set[30000], int *count) ;
 int lineDist(Point p1, Point p2, Point p);

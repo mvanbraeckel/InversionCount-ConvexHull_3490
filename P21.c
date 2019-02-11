@@ -24,7 +24,7 @@ void p21() {
     // determine bounding convex hull set
     printf("\n...calculating convex hull...\n");
     ftime(&t_start);
-    int count = brute_convex_hull(points, hull_set);
+    int count = brute_convex_hull(points, hull_set, size);
     ftime(&t_end);
 
     // calc execution time, then display results
@@ -59,17 +59,17 @@ void p21() {
  * @return the number of points in the convex hull
  * https://math.stackexchange.com/questions/274712/calculate-on-which-side-of-a-straight-line-is-a-given-point-located
  */
-int brute_convex_hull(Point p[30000], Point hull_set[30000]) {
-    int h = 0; // holds #of bounding points in the convex hull set
+int brute_convex_hull(Point p[30000], Point hull_set[], int size) {
+    int h = 0; // counts #of bounding points in the convex hull set
 
     // create line from Point I to Point J
-    for(int i = 0; i < 30000; i++) {
-        for(int j = 0; j < 30000; j++) {
+    for(int i = 0; i < size; i++) {
+        for(int j = 0; j < size; j++) {
             if( i == j || (p[i].x == p[j].x && p[i].y == p[j].y) ) continue; //skip because same point
             bool all_left = true; //reset
             
             // if all other points are on the left or in-line, then it's a bounding point
-            for(int k = 0; k < 30000; k++) {
+            for(int k = 0; k < size; k++) {
                 if( k == i || k == j || (p[k].x == p[i].x && p[k].y == p[i].y) ) continue; // skip because same point (already know Points I and J are different)
 
                 // calc and check which side of line Point K is on
@@ -91,7 +91,6 @@ int brute_convex_hull(Point p[30000], Point hull_set[30000]) {
                 }
                 if(unique1) hull_set[h++] = p[i];
                 if(unique2) hull_set[h++] = p[j];
-                break;
             }
         }
     }
