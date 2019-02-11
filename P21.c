@@ -93,7 +93,6 @@ int brute_convex_hull(Point p[30000], Point hull_set[30000]) {
                 }
                 if(unique1) {
                     hull_set[h++] = p[i];
-                    break;
                 }
             }
         }
