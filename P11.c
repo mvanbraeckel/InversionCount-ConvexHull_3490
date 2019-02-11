@@ -20,11 +20,12 @@ void p11() {
     
     // read in the data
     read_ints("data_1.txt", arr);
+    int size = sizeof(arr)/sizeof(int);
     
     // count #of inversions, also track time
     printf("\n...counting inversions...\n");
     ftime(&t_start);
-    selection_count(arr, &count);
+    selection_count(arr, size, &count);
     ftime(&t_end);
 
     // calc execution time, then display results
@@ -39,9 +40,8 @@ void p11() {
  * @param int arr[] -the array of uintegers to check
  * @param int *count -pass by ref to store number of inversions
  */
-void selection_count(int arr[], int *count) {
+void selection_count(int arr[], int size, int *count) {
     *count = 0;
-    int size = sizeof(arr)/sizeof(arr[0]);
     for(int i = 0; i < size-1; i++) {
         for(int j = i+1; j < size; j++) {
             if(arr[i] > arr[j]) {

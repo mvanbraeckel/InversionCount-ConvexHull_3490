@@ -23,7 +23,7 @@ void p12() {
     
     // read in the data
     read_ints("data_1.txt", arr);
-    int size = sizeof(arr)/sizeof(arr[0]);
+    int size = sizeof(arr)/sizeof(Point);
     int temp[size];
     
     // count #of inversions, also track time
