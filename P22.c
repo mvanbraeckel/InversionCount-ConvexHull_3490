@@ -91,7 +91,9 @@ void quickHull(Point a[], int n, Point p1, Point p2, int side, Point hull_set[30
         if(unique1) {
             hull_set[(*count)++] = p1;
         }
-        if(unique2 && !(p2.x == p1.x && p2.y == p1.y)) {
+        if(p1.x == p2.x && p1.y == p2.y) {
+            unique2 = false;
+        } else if(unique2) {
             hull_set[(*count)++] = p2;
         }
         
