@@ -15,12 +15,13 @@
  */
 void p12() {
     // declare variables
-    int arr[50000];
+    //int arr[50000];
+    int arr[] = { 12, 23, 3, 56, 35, 78, 65, 98};
     int count = 0;
     struct timeb t_start, t_end;
     
     // read in the data
-    read_ints("data_1.txt", arr);
+    //read_ints("data_1.txt", arr);
     
     // count #of inversions, also track time
     ftime(&t_start);
@@ -30,6 +31,9 @@ void p12() {
     // calc execution time, then display results
     int t_elapsed = (int)( 1000.0*(t_end.time - t_start.time) + (t_end.millitm - t_start.millitm) );
     printf("Inversion count = %d | time = %d milliseconds\n", count, t_elapsed);
+
+    printf("\nSorted array is \n"); 
+    printArray(arr, sizeof(arr)/sizeof(arr[0])); 
 }
 
 // Merges two subarrays of arr[]. 
