@@ -7,7 +7,7 @@
 CC = gcc
 CFLAGS = -g -Wall -std=c11 -pedantic
 
-all: P11 P12 P21 main git
+all: P11 P12 P21 P22 main git
 
 main: P11 P21 main.c a2header.h
 	$(CC) $(CFLAGS) -c main.c -o bin/main.o
@@ -19,6 +19,8 @@ P12: P12.c
 	$(CC) $(CFLAGS) -c P12.c -o bin/P12.o
 P21: P21.c
 	$(CC) $(CFLAGS) -c P21.c -o bin/P21.o
+P22: P22.c
+	$(CC) $(CFLAGS) -c P22.c -o bin/P22.o
 
 git: *.c makefile
 	git add makefile

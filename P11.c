@@ -22,6 +22,7 @@ void p11() {
     read_ints("data_1.txt", arr);
     
     // count #of inversions, also track time
+    printf("\n...counting inversions...\n");
     ftime(&t_start);
     selection_count(arr, &count);
     ftime(&t_end);

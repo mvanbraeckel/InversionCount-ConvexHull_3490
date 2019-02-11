@@ -42,7 +42,7 @@ int main(int argc, char* argv[]) {
             p21();
 
         } else if(menu_input[0] == '4') {         // ================================= 4 =================================
-            printf("\noption 4\n");
+            p22();
 
         } else if(menu_input[0] == '5') {         // ================================= 7 =================================
             printf("\nGood bye!\n");    // display closing msg
@@ -90,6 +90,35 @@ void read_ints(char* filename, int arr[50000]) {
         while(!feof(fp) && i < 50000) {
             fscanf(fp, " %s ", buffer);
             arr[i++] = atoi(buffer);
+        }
+    }
+    fclose(fp);
+}
+
+/**
+ * Reads in up to 30000 2D points from a file
+ * @param char* filename -the name of the text file being read
+ * @param Point p[] -the Point array of 30,000 to be loaded
+ */
+void read_points(char* filename, Point p[30000]) {
+    char buffer[31] = ""; //30 char max
+
+    FILE *fp = fopen(filename, "r");
+    // checks if fopen messed up
+    if(fp == NULL) {
+        fprintf(stderr, "ERROR: File could not be opened\n");
+
+    } else {
+        // read one Point at a time until the end of the file
+        int i = 0;
+        while(!feof(fp) && i < 30000) {
+            // read in x-value
+            fscanf(fp, " %s ", buffer);
+            p[i].x = atoi(buffer);
+            // read in y-value
+            fscanf(fp, " %s ", buffer);
+            p[i].y = atoi(buffer);
+            i++;
         }
     }
     fclose(fp);

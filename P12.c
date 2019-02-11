@@ -36,6 +36,8 @@ void p12() {
     free(temp);
 }
 
+// ======================================================================
+
 /**
  * Uses mergesort to count the number of inversions using a recursive divide-and-conquer method
  * @param int arr[] -the array of 50000 integers to be checked
