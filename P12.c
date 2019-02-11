@@ -33,64 +33,46 @@ void p12() {
     printf("Inversion count = %d | time = %d milliseconds\n", count, t_elapsed);
 }
 
-// Sorts the input array and returns the number of inversions in the array
-int mergeSort(int arr[], int temp[], int left, int right) 
-{ 
-    int mid, inv_count = 0; 
-    if (right > left) { 
-        /* Divide the array into two parts and call mergeSortAndCountInv() 
-       for each of the parts */
-        mid = (right + left) / 2; 
-  
-        /* Inversion count will be sum of inversions in left-part, right-part 
-      and number of inversions in merging */
-        inv_count = mergeSort(arr, temp, left, mid); 
-        inv_count += mergeSort(arr, temp, mid + 1, right); 
-  
-        /*Merge the two parts*/
-        inv_count += merge(arr, temp, left, mid + 1, right); 
-    } 
-    return inv_count; 
-} 
-  
-/* This funt merges two sorted arrays and returns inversion count in 
-   the arrays.*/
-int merge(int arr[], int temp[], int left, int mid, int right) 
-{ 
-    int i, j, k; 
-    int inv_count = 0; 
-  
-    i = left; /* i is index for left subarray*/
-    j = mid; /* j is index for right subarray*/
-    k = left; /* k is index for resultant merged subarray*/
-    while ((i <= mid - 1) && (j <= right)) { 
-        if (arr[i] <= arr[j]) { 
-            temp[k++] = arr[i++]; 
-        } 
-        else { 
-            temp[k++] = arr[j++]; 
-  
-            /*this is tricky -- see above explanation/diagram for merge()*/
-            inv_count = inv_count + (mid - i); 
-        } 
-    } 
-  
-    /* Copy the remaining elements of left subarray 
-   (if there are any) to temp*/
-    while (i <= mid - 1) 
-        temp[k++] = arr[i++]; 
-  
-    /* Copy the remaining elements of right subarray 
-   (if there are any) to temp*/
-    while (j <= right) 
-        temp[k++] = arr[j++]; 
-  
-    /*Copy back the merged elements to original array*/
-    for (i = left; i <= right; i++) 
-        arr[i] = temp[i]; 
-  
-    return inv_count; 
-} 
+// Sorts the input array, returns the #of inversions
+int mergeSort(int arr[], int temp[], int left, int right) {
+    int count = 0;
+
+    if(left < right) {
+        // divide array into halves, then mergeSort each separately, then merge it back together
+        int mid = left + (right - left) / 2; // = (l+r)/2, avoids overflow for large numbers
+        // total #of inversions = left-part + right-part + merging-part
+        count = mergeSort(arr, temp, left, mid);
+        count += mergeSort(arr, temp, mid+1, right);
+        count += merge(arr, temp, left, mid+1, right);
+    }
+    return count;
+}
+
+// Merges two sorted arrays, returns #of inversions
+int merge(int arr[], int temp[], int left, int mid, int right) {
+    int count = 0;
+
+    // Initial indices of left, right, and merged subarrays
+    int i = left;
+    int j = mid;
+    int k = left;
+    // create sorted array using both halves
+    while( i <= mid-1 && j <= right ) {
+        if(arr[i] <= arr[j]) {
+            temp[k++] = arr[i++];
+        } else {
+            temp[k++] = arr[j++];
+            count += mid-i; // (all left after item i are inversions)
+        }
+    }
+
+    // Copy any remaining elements of left and right arrays to temp, then overwrite original with merged
+    while(i <= mid-1) temp[k++] = arr[i++];
+    while(j <= right) temp[k++] = arr[j++];
+    for(i = left; i <= right; i++) arr[i] = temp[i];
+
+    return count;
+}
 
 /*// Merges two subarrays of arr[]. 
 // First subarray is arr[l..m] 
