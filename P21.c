@@ -75,7 +75,7 @@ int brute_convex_hull(Point p[30000], Point hull_set[30000]) {
 
                 // calc and check which side of line Point K is on
                 double d = (p[k].x-p[i].x)*(p[j].y-p[i].y) - (p[k].y-p[i].y)*(p[j].x-p[i].x);
-                if(d > 0) {
+                if(d >= 0) {
                     all_left = false;
                     break;
                 }

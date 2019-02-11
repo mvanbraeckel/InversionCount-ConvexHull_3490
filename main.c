@@ -123,21 +123,3 @@ void read_points(char* filename, Point p[30000]) {
     }
     fclose(fp);
 }
-
-void write_points(char* filename, Point p[30000]) {
-    FILE *fp = fopen(filename, "w");
-    // checks if fopen messed up
-    if(fp == NULL) {
-        fprintf(stderr, "ERROR: File could not be opened\n");
-
-    } else {
-        // read one Point at a time until the end of the file
-        int i = 0;
-        while(!feof(fp) && i < 30000) {
-            // read in x-value
-            fprintf(fp, "{%lf, %lf}, ", p[i].x, p[i].y);
-            i++;
-        }
-    }
-    fclose(fp);
-}
