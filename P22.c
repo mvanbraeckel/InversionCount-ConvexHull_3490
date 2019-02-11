@@ -75,14 +75,14 @@ int line_dist(Point p1, Point p2, Point p) {
 
 // End points of line L are p1 and p2.  side can have value 
 // 1 or -1 specifying each of the parts made by the line L 
-void quick_hull(Point a[], Point hull_set[], int size, Point p1, Point p2, int side, int *count) {
+void quick_hull(Point p[], Point hull_set[], int size, Point p1, Point p2, int side, int *count) {
     int ind = -1;
     int max_dist = 0;
 
     // Find the extreme point (EP) from the line on the specified side
     for(int i = 0; i < size; i++) {
-        int temp = line_dist(p1, p2, a[i]);
-        if( which_side(p1, p2, a[i]) == side && temp > max_dist ) {
+        int temp = line_dist(p1, p2, p[i]);
+        if( which_side(p1, p2, p[i]) == side && temp > max_dist ) {
             ind = i;
             max_dist = temp;
         }
@@ -93,22 +93,22 @@ void quick_hull(Point a[], Point hull_set[], int size, Point p1, Point p2, int s
         bool unique1 = true;
         bool unique2 = true;
         for(int i = 0; i < *count; i++) {
-            if(p1.x == hull_set[i].x && p1.y == hull_set[i].y) unique1 = false;
-            if(p2.x == hull_set[i].x && p2.y == hull_set[i].y) unique2 = false;
+            if( p1.x == hull_set[i].x && p1.y == hull_set[i].y ) unique1 = false;
+            if( p2.x == hull_set[i].x && p2.y == hull_set[i].y ) unique2 = false;
         }
         if(unique1) hull_set[(*count)++] = p1;
-        if(p1.x == p2.x && p1.y == p2.y) return; //unique2 = false;
+        if( p1.x == p2.x && p1.y == p2.y ) return; //unique2 = false;
         if(unique2) hull_set[(*count)++] = p2;
         return;
     }
 
-    // Recur for the two parts divided by a[ind]
-    quick_hull(a, hull_set, size, a[ind], p1, -which_side(a[ind], p1, p2), count);
-    quick_hull(a, hull_set, size, a[ind], p2, -which_side(a[ind], p2, p1), count);
+    // Recur for the two parts divided by p[ind]
+    quick_hull(p, hull_set, size, p[ind], p1, -1*which_side(p[ind], p1, p2), count);
+    quick_hull(p, hull_set, size, p[ind], p2, -1*which_side(p[ind], p2, p1), count);
 }
 
-void print_hull(Point a[], Point hull_set[], int size, int *count) { 
-    // a[i].second -> y-coordinate of the ith point 
+void print_hull(Point p[], Point hull_set[], int size, int *count) { 
+    // p[i].second -> y-coordinate of the ith point 
     if (size < 3) { 
         fprintf(stderr, "\nConvex hull not possible\n"); 
         return; 
@@ -119,21 +119,21 @@ void print_hull(Point a[], Point hull_set[], int size, int *count) {
     int min_x = 0, max_x = 0; 
     for (int i=1; i<size; i++) 
     { 
-        if (a[i].x < a[min_x].x) 
+        if (p[i].x < p[min_x].x) 
             min_x = i; 
-        if (a[i].x > a[max_x].x) 
+        if (p[i].x > p[max_x].x) 
             max_x = i; 
     } 
   
     // Recursively find convex hull points on 
-    // one side of line joining a[min_x] and 
-    // a[max_x] 
-    quick_hull(a, hull_set, size, a[min_x], a[max_x], 1, count); 
+    // one side of line joining p[min_x] and 
+    // p[max_x] 
+    quick_hull(p, hull_set, size, p[min_x], p[max_x], 1, count); 
   
     // Recursively find convex hull points on 
-    // other side of line joining a[min_x] and 
-    // a[max_x] 
-    quick_hull(a, hull_set, size, a[min_x], a[max_x], -1, count); 
+    // other side of line joining p[min_x] and 
+    // p[max_x] 
+    quick_hull(p, hull_set, size, p[min_x], p[max_x], -1, count); 
   
     /*printf("\nThe points in Convex Hull are:\n"); 
     for(int i = 0; i < *count; i++) {
