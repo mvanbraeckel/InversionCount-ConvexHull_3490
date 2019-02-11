@@ -30,6 +30,7 @@ void p21() {
     // calc execution time, then display results
     int t_elapsed = (int)( 1000.0*(t_end.time - t_start.time) + (t_end.millitm - t_start.millitm) );
     
+    // selection sort by x-coord so it's a little easier to read
     for(int i = 0; i < count-1; i++) {
         for(int j = i+1; j < count; j++) {
             if(hull_set[i].x > hull_set[j].x) {
@@ -40,7 +41,7 @@ void p21() {
         }
     }
 
-    printf("\n\tBounding Convex Hull Set:\n\t===============================\n");
+    printf("\n\tMinimum Bounding Convex Hull Set:\n\t=================================\n");
     for(int i = 0; i < count; i++) {
         printf("\tPoint %03d: (%8.1lf, %8.1lf)\n", i+1, hull_set[i].x, hull_set[i].y);
     }
@@ -79,7 +80,7 @@ int brute_convex_hull(Point p[30000], Point hull_set[30000]) {
                 }
             }
 
-            // if it's good, add to bounding set (make sure it's not already added)
+            // if it's good, add both to bounding set (make sure it's not already added)
             if(all_left) {
                 //printf("\tPoint %d: (%8.1lf, %8.1lf)\n", h+1, p[i].x, p[i].y);
                 bool unique1 = true;
