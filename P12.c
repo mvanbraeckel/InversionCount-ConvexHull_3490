@@ -59,12 +59,12 @@ void merge(int arr[], int l, int m, int r, int *count) {
             j++;
             (*count)++;
         }
-        k++;
+        //k++;
     } 
   
     // Copy the remaining elements of left and right arrays, if there are any
-    while(i < n1) arr[k++] = left[i++];
-    while(j < n2) arr[k++] = right[j++];
+    //while(i < n1) arr[k++] = left[i++];
+    //while(j < n2) arr[k++] = right[j++];
 } 
   
 // l is for left index and r is right index of the sub-array of arr to be sorted
@@ -73,9 +73,9 @@ void mergesort(int arr[], int l, int r, int *count) {
         // Same as (l+r)/2, but avoids overflow for large l and h
         int m = l+(r-l)/2;
         // Sort first and second halves
-        mergesort(arr, l, m, count);
-        mergesort(arr, m+1, r, count);
-        merge(arr, l, m, r, count);
+        mergesort(arr, l, m, *count);
+        mergesort(arr, m+1, r, *count);
+        merge(arr, l, m, r, *count);
     }
 }
 
