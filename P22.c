@@ -81,10 +81,10 @@ void quick_hull(Point p[], Point hull_set[], int size, Point p1, Point p2, int s
 
     // Find the EP from the line on the specified side
     for(int i = 0; i < size; i++) {
-        int temp = line_dist(p1, p2, p[i]);
-        if( which_side(p1, p2, p[i]) == side && temp > max_dist ) {
+        int dist = abs( (p[i].y-p1.y)*(p2.x-p1.x) - (p2.y-p1.y)*(p[i].x-p1.x) );
+        if( which_side(p1, p2, p[i]) == side && dist > max_dist ) {
             ind = i;
-            max_dist = temp;
+            max_dist = dist;
         }
     }
 
@@ -119,15 +119,4 @@ int which_side(Point p1, Point p2, Point p) {
     if(d > 0) return  1;
     if(d < 0) return -1;
     return 0;
-}
-
-/**
- * Calculates the distance a Point P and a Line P1P2
- * @param Point p1 -first point in the line
- * @param Point p2 -second point in the line
- * @param Point p -the point being checked for where it falls wrt the line
- * @return the distance between Point P and the line
- */
-int line_dist(Point p1, Point p2, Point p) {
-    return abs( (p.y-p1.y)*(p2.x-p1.x) - (p2.y-p1.y)*(p.x-p1.x) );
 }

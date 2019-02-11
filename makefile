@@ -25,6 +25,7 @@ P22: P22.c
 git: *.c makefile
 	git add makefile
 	git add README.md
+	git add designA2.pdf
 	git add bin
 	git add *.txt
 	git add *.h
