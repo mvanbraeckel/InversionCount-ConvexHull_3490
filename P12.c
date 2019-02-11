@@ -25,7 +25,7 @@ void p12() {
     // count #of inversions, also track time
     ftime(&t_start);
     int* temp = (int*)malloc(sizeof(int) * 50000);
-    int count = _mergeSort(arr, temp, 0, 49999);
+    int count = mergeSort(arr, temp, 0, 49999);
     ftime(&t_end);
 
     // calc execution time, then display results
@@ -34,18 +34,18 @@ void p12() {
 }
 
 // Sorts the input array and returns the number of inversions in the array
-int _mergeSort(int arr[], int temp[], int left, int right) 
+int mergeSort(int arr[], int temp[], int left, int right) 
 { 
     int mid, inv_count = 0; 
     if (right > left) { 
-        /* Divide the array into two parts and call _mergeSortAndCountInv() 
+        /* Divide the array into two parts and call mergeSortAndCountInv() 
        for each of the parts */
         mid = (right + left) / 2; 
   
         /* Inversion count will be sum of inversions in left-part, right-part 
       and number of inversions in merging */
-        inv_count = _mergeSort(arr, temp, left, mid); 
-        inv_count += _mergeSort(arr, temp, mid + 1, right); 
+        inv_count = mergeSort(arr, temp, left, mid); 
+        inv_count += mergeSort(arr, temp, mid + 1, right); 
   
         /*Merge the two parts*/
         inv_count += merge(arr, temp, left, mid + 1, right); 
