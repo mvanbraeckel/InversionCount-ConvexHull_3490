@@ -103,8 +103,8 @@ void quick_hull(Point a[], Point hull_set[], int size, Point p1, Point p2, int s
     }
 
     // Recur for the two parts divided by a[ind]
-    quick_hull(a, size, hull_set, a[ind], p1, -which_side(a[ind], p1, p2), count);
-    quick_hull(a, size, hull_set, a[ind], p2, -which_side(a[ind], p2, p1), count);
+    quick_hull(a, hull_set, size, a[ind], p1, -which_side(a[ind], p1, p2), count);
+    quick_hull(a, hull_set, size, a[ind], p2, -which_side(a[ind], p2, p1), count);
 }
 
 void print_hull(Point a[], Point hull_set[], int size, int *count) { 
