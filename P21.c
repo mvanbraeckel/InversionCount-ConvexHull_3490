@@ -20,6 +20,12 @@ void p21() {
     read_points("data_2.txt", points);
     int size = sizeof(points)/sizeof(Point);
     Point hull_set[size];
+
+    // check that min size requirements are met
+    if(size < 3) {
+        fprintf(stderr, "\nInvalid: Convex hull not possible - must have at least 3 points\n");
+        return;
+    }
     
     // determine bounding convex hull set
     printf("\n...calculating convex hull...\n");
@@ -54,7 +60,7 @@ void p21() {
  * Uses brute force to solve the convex hull problem for a set of 30000 2D points
  * Two points A and B are part of the convex hull if all other points are in-line or on the same side of the line as AB,
  *      A=(x1,y1), B=(x2,y2), P(x,y)  |  d=(x−x1)(y2−y1)−(y−y1)(x2−x1) ; where d<0 is LS, d>0 is RS, & d=0 is in-line
- * @param Point p[] -the array of 30000 Points to check
+ * @param Point p[] -the array of up to 30000 Points to check
  * @param Point hull_set[] -the array of Points that will contain the convex hull
  * @return the number of points in the convex hull
  * https://math.stackexchange.com/questions/274712/calculate-on-which-side-of-a-straight-line-is-a-given-point-located
