@@ -116,8 +116,8 @@ void printHull(Point a[], int n, Point hull_set[30000], int *count) {
     // a[max_x] 
     quickHull(a, n, a[min_x], a[max_x], -1, hull_set, count); 
   
-    printf("\nThe points in Convex Hull are:\n"); 
+    /*printf("\nThe points in Convex Hull are:\n"); 
     for(int i = 0; i < *count; i++) {
         printf("\tPoint %03d: (%8.1lf, %8.1lf)\n", i+1, hull_set[i].x, hull_set[i].y);
-    }
+    }*/
 }
