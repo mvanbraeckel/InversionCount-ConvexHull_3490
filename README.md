@@ -22,7 +22,7 @@
 
 My files: README.md, design.pdf, makefile, a2header.h, main.c, P11.c, P12.c, P21.c, P22.c, data_1.txt, and data_2.txt
 
-_NOTE: make sure a bin folder exists before compiling using "make"
+_NOTE: make sure a bin folder exists before compiling using "make"_
 To compile: type "make" --all *.o files and the executable file "run" will be located in a bin folder
 
 ## main.c
@@ -48,6 +48,7 @@ algos/>
 Option 1: Brute Inversion Count - Example output: (approximately 6-8 seconds to run)
 
 > ...counting inversions...
+
 > Inversion Count = 623897407 | Brute Force Time = 7739 milliseconds
 
 ### P12.c
