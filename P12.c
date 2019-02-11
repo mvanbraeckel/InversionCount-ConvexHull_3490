@@ -26,7 +26,7 @@ void p12() {
     
     // count #of inversions, also track time
     ftime(&t_start);
-    mergesort(arr, 0, size-1);
+    mergesort(arr, 0, size-1, &count);
     ftime(&t_end);
 
     // calc execution time, then display results
@@ -40,7 +40,7 @@ void p12() {
 // Merges two subarrays of arr[]. 
 // First subarray is arr[l..m] 
 // Second subarray is arr[m+1..r] 
-void merge(int arr[], int l, int m, int r) { 
+void merge(int arr[], int l, int m, int r, int *count) { 
     // create temp arrays
     int n1 = m - l + 1;
     int n2 =  r - m;
@@ -56,10 +56,11 @@ void merge(int arr[], int l, int m, int r) {
     int j = 0;
     int k = l;
     while(i < n1 && j < n2) {
-        if(left[i] >= right[j]) {
+        if(left[i] <= right[j]) {
             arr[k] = left[i++];
         } else {
             arr[k] = right[j++];
+            (*count)++;
         }
         k++;
     } 
@@ -70,14 +71,14 @@ void merge(int arr[], int l, int m, int r) {
 } 
   
 // l is for left index and r is right index of the sub-array of arr to be sorted
-void mergesort(int arr[], int l, int r) {
+void mergesort(int arr[], int l, int r, int *count) {
     if(l < r) {
         // Same as (l+r)/2, but avoids overflow for large l and h
         int m = l+(r-l)/2;
         // Sort first and second halves
-        mergesort(arr, l, m);
-        mergesort(arr, m+1, r);
-        merge(arr, l, m, r);
+        mergesort(arr, l, m, &count);
+        mergesort(arr, m+1, r, &count);
+        merge(arr, l, m, r, &count);
     }
 }
 
