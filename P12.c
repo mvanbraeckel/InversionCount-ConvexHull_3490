@@ -17,6 +17,7 @@
 void p12() {
     // declare variables
     int arr[50000];
+    int count = 0;
     struct timeb t_start, t_end;
     
     // read in the data
@@ -25,7 +26,7 @@ void p12() {
     // count #of inversions, also track time
     ftime(&t_start);
     int* temp = (int*)malloc(sizeof(int) * 50000);
-    int count = mergeSort(arr, temp, 0, 49999);
+    mergeSort(arr, temp, 0, 49999, &count);
     ftime(&t_end);
 
     // calc execution time, then display results
@@ -34,24 +35,20 @@ void p12() {
 }
 
 // Sorts the input array, returns the #of inversions
-int mergeSort(int arr[], int temp[], int left, int right) {
-    int count = 0;
-
+void mergeSort(int arr[], int temp[], int left, int right, int *count) {
     if(left < right) {
         // divide array into halves, then mergeSort each separately, then merge it back together
         int mid = left + (right - left) / 2; // = (l+r)/2, avoids overflow for large numbers
+
         // total #of inversions = left-part + right-part + merging-part
-        count = mergeSort(arr, temp, left, mid);
-        count += mergeSort(arr, temp, mid+1, right);
-        count += merge(arr, temp, left, mid+1, right);
+        mergeSort(arr, temp, left, mid, count);
+        mergeSort(arr, temp, mid+1, right, count);
+        merge(arr, temp, left, mid+1, right, count);
     }
-    return count;
 }
 
 // Merges two sorted arrays, returns #of inversions
-int merge(int arr[], int temp[], int left, int mid, int right) {
-    int count = 0;
-
+void merge(int arr[], int temp[], int left, int mid, int right, int *count) {
     // Initial indices of left, right, and merged subarrays
     int i = left;
     int j = mid;
@@ -62,7 +59,7 @@ int merge(int arr[], int temp[], int left, int mid, int right) {
             temp[k++] = arr[i++];
         } else {
             temp[k++] = arr[j++];
-            count += mid-i; // (all left after item i are inversions)
+            *count += mid-i; // (all left after item i are inversions)
         }
     }
 
@@ -70,8 +67,6 @@ int merge(int arr[], int temp[], int left, int mid, int right) {
     while(i <= mid-1) temp[k++] = arr[i++];
     while(j <= right) temp[k++] = arr[j++];
     for(i = left; i <= right; i++) arr[i] = temp[i];
-
-    return count;
 }
 
 /*// Merges two subarrays of arr[]. 
