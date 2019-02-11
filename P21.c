@@ -9,16 +9,17 @@
 #include "a2header.h"
 
 /**
- * Brute force algorithm that solves the Convex Hull problem for a set of 30000 2D points that are read from data_2.txt
+ * Brute force algorithm that solves the Convex Hull problem for a set of up to 30000 2D points that are read from data_2.txt
  */
 void p21() {
     // declare variables
     Point points[30000];
-    Point hull_set[30000];
     struct timeb t_start, t_end;
     
     // read in the data
     read_points("data_2.txt", points);
+    int size = sizeof(points)/sizeof(Point);
+    Point hull_set[size];
     
     // determine bounding convex hull set
     printf("\n...calculating convex hull...\n");

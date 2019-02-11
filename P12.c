@@ -23,24 +23,24 @@ void p12() {
     
     // read in the data
     read_ints("data_1.txt", arr);
+    int size = sizeof(arr)/sizeof(int);
+    int temp[size];
     
     // count #of inversions, also track time
     ftime(&t_start);
-    int* temp = (int*)malloc(sizeof(int) * 50000);
-    mergesort(arr, temp, 0, 49999, &count);
+    mergesort(arr, temp, 0, size-1, &count);
     ftime(&t_end);
 
     // calc execution time, then display results
     int t_elapsed = (int)( 1000.0*(t_end.time - t_start.time) + (t_end.millitm - t_start.millitm) );
     printf("Inversion Count = %d | Recursive Divide-and-Conquer Time = %d milliseconds\n", count, t_elapsed);
-    free(temp);
 }
 
 // ======================================================================
 
 /**
  * Uses mergesort to count the number of inversions using a recursive divide-and-conquer method
- * @param int arr[] -the array of 50000 integers to be checked
+ * @param int arr[] -the array of integers to be checked
  * @param int temp[] -the temp array of arr[] to hold things during merging
  * @param int left -the left index (begin)
  * @param int right -the right index (end)
@@ -60,7 +60,7 @@ void mergesort(int arr[], int temp[], int left, int right, int *count) {
 
 /**
  * Does the re-merging of two sorted arrays for mergesort
- * @param int arr[] -the array of 50000 integers to be checked
+ * @param int arr[] -the array of integers to be checked
  * @param int temp[] -the temp array of arr[] to hold things during merging
  * @param int left -the left index (begin)
  * @param int mid -the middle index (half)

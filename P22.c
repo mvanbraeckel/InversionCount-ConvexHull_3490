@@ -4,6 +4,7 @@
  * @version 10/02/2019
  * @file P22.c
  * @brief A2 Problem 2.3 - b) quicksort-based, recursive, divide-and-conquer algorithm to solve the Convex Hull problem (Quickhull)
+ * https://www.geeksforgeeks.org/quickhull-algorithm-convex-hull/
  */
 
 #include "a2header.h"

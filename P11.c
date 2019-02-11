@@ -9,7 +9,7 @@
 #include "a2header.h"
 
 /**
- * Brute force algorithm that counts number of inversions in 50000 integers
+ * Brute force algorithm that counts number of inversions in up to 50000 integers
  * read from data_1.txt using Selection Sort-based counting
  */
 void p11() {
@@ -36,13 +36,14 @@ void p11() {
 
 /**
  * Counts the number of inversions in the array
- * @param int arr[] -the array of 50000 integers to check
+ * @param int arr[] -the array of uintegers to check
  * @param int *count -pass by ref to store number of inversions
  */
-void selection_count(int arr[50000], int *count) {
+void selection_count(int arr[], int *count) {
     *count = 0;
-    for(int i = 0; i < 49999; i++) {
-        for(int j = i+1; j < 50000; j++) {
+    int size = sizeof(arr)/sizeof(int);
+    for(int i = 0; i < size-1; i++) {
+        for(int j = i+1; j < size; j++) {
             if(arr[i] > arr[j]) {
                 (*count)++;
             }
