@@ -24,7 +24,7 @@ void p12() {
     
     // count #of inversions, also track time
     ftime(&t_start);
-    mergeSort(arr, 0, 49999);
+    mergesort(arr, 0, 49999);
     ftime(&t_end);
 
     // calc execution time, then display results
@@ -36,83 +36,51 @@ void p12() {
 // First subarray is arr[l..m] 
 // Second subarray is arr[m+1..r] 
 void merge(int arr[], int l, int m, int r) { 
-    int i, j, k; 
-    int n1 = m - l + 1; 
-    int n2 =  r - m; 
-  
-    /* create temp arrays */
-    int L[n1], R[n2]; 
-  
-    /* Copy data to temp arrays L[] and R[] */
-    for (i = 0; i < n1; i++) 
-        L[i] = arr[l + i]; 
-    for (j = 0; j < n2; j++) 
-        R[j] = arr[m + 1+ j]; 
-  
-    /* Merge the temp arrays back into arr[l..r]*/
-    i = 0; // Initial index of first subarray 
-    j = 0; // Initial index of second subarray 
-    k = l; // Initial index of merged subarray 
-    while (i < n1 && j < n2) 
-    { 
-        if (L[i] <= R[j]) 
-        { 
-            arr[k] = L[i]; 
-            i++; 
-        } 
-        else
-        { 
-            arr[k] = R[j]; 
-            j++; 
-        } 
-        k++; 
+    // create temp arrays
+    int n1 = m - l + 1;
+    int n2 =  r - m;
+    int left[n1], right[n2];
+
+    // Copy data to temp arrays
+    for(int i = 0; i < n1; i++) left[i] = arr[l + i];
+    for(int j = 0; j < n2; j++) right[j] = arr[m + 1+ j];
+
+    // Merge the temp arrays back into arr[l..r]
+    // Initial indices of 1st, 2nd, merged subarrays
+    int i = 0;
+    int j = 0;
+    int k = l;
+    while(i < n1 && j < n2) {
+        if(left[i] <= right[j]) {
+            arr[k] = left[i++];
+        } else {
+            arr[k] = right[j++];
+        }
+        k++;
     } 
   
-    /* Copy the remaining elements of L[], if there 
-       are any */
-    while (i < n1) 
-    { 
-        arr[k] = L[i]; 
-        i++; 
-        k++; 
-    } 
-  
-    /* Copy the remaining elements of R[], if there 
-       are any */
-    while (j < n2) 
-    { 
-        arr[k] = R[j]; 
-        j++; 
-        k++; 
-    } 
+    // Copy the remaining elements of left and right arrays, if there are any
+    while(i < n1) arr[k++] = left[i++];
+    while(j < n2) arr[k++] = right[j++];
 } 
   
-/* l is for left index and r is right index of the 
-   sub-array of arr to be sorted */
-void mergeSort(int arr[], int l, int r) { 
-    if (l < r) 
-    { 
-        // Same as (l+r)/2, but avoids overflow for 
-        // large l and h 
-        int m = l+(r-l)/2; 
-  
-        // Sort first and second halves 
-        mergeSort(arr, l, m); 
-        mergeSort(arr, m+1, r); 
-  
-        merge(arr, l, m, r); 
+// l is for left index and r is right index of the sub-array of arr to be sorted
+void mergesort(int arr[], int l, int r) {
+    if(l < r) {
+        // Same as (l+r)/2, but avoids overflow for large l and h
+        int m = l+(r-l)/2;
+        // Sort first and second halves
+        mergesort(arr, l, m);
+        mergesort(arr, m+1, r);
+        merge(arr, l, m, r);
     }
 }
 
-/* UTILITY FUNCTIONS */
 /* Function to print an array */
-void printArray(int A[], int size) { 
-    int i; 
-    for (i=1; i <= size; i++) {
-        printf("%d ", A[i-1]); 
-        if(i % 5 == 0) {
-            printf("\n");
-        }
+void printArray(int A[], int size) {
+    for(int i = 1; i <= size; i++) {
+        printf("%d ", A[i-1]);
+        if(i % 5 == 0) printf("\n");
     }
-    printf("\n"); 
+    printf("\n");
 }
