@@ -27,8 +27,8 @@ void p11() {
     ftime(&t_end);
 
     // calc execution time, then display results
-    double t_elapsed = (double)( 1000.0*(t_end.time - t_start.time) + (t_end.millitm - t_start.millitm) ) / 1000.0;
-    printf("Inversion Count = %d | Brute Force Time = %lf seconds\n", count, t_elapsed);
+    double t_elapsed = (double)( 1000.0*(t_end.time - t_start.time) + (t_end.millitm - t_start.millitm) );
+    printf("Inversion Count = %d | Brute Force Time = %lf milliseconds\n", count, t_elapsed);
 }
 
 // ======================================================================
