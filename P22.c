@@ -77,9 +77,24 @@ void quickHull(Point a[], int n, Point p1, Point p2, int side, Point hull_set[30
     // If no point is found, add the end points 
     // of L to the convex hull. 
     if (ind == -1) 
-    { 
-        hull_set[(*count)++] = p1;
-        hull_set[(*count)++] = p2;
+    {
+        bool unique1 = true;
+        bool unique2 = true;
+        for(int i = 0; i < *count; i++) {
+            if(p1.x == a[i].x && p1.y == a[i].y) {
+                unique1 = false;
+            }
+            if(p2.x == a[i].x && p2.y == a[i].y) {
+                unique2 = false;
+            }
+        }
+        if(unique1) {
+            hull_set[(*count)++] = p1;
+        }
+        if(unique2) {
+            hull_set[(*count)++] = p2;
+        }
+        
         return; 
     } 
   
