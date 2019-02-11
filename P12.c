@@ -16,7 +16,6 @@
 void p12() {
     // declare variables
     int arr[50000];
-    int count = 0;
     struct timeb t_start, t_end;
     
     // read in the data
@@ -24,7 +23,7 @@ void p12() {
     
     // count #of inversions, also track time
     ftime(&t_start);
-    mergeSort(arr, 50000);
+    int count = mergeSort(arr, 50000);
     ftime(&t_end);
 
     // calc execution time, then display results
