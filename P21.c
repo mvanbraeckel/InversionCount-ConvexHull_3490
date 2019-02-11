@@ -72,6 +72,7 @@ int brute_convex_hull(Point p[30000], Point hull_set[30000]) {
                 //printf("\tPoint %d: (%8.1lf, %8.1lf)\n", h+1, p[i].x, p[i].y);
                 hull_set[h] = p[i];
                 h++;
+                break;
             }
         }
     }
