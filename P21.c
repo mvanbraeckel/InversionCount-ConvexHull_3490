@@ -83,7 +83,7 @@ int brute_convex_hull(Point p[30000], Point hull_set[30000]) {
                 //printf("\tPoint %d: (%8.1lf, %8.1lf)\n", h+1, p[i].x, p[i].y);
                 bool unique1 = true;
                 for(int m = 0; m < h; m++) {
-                    if(p[i].x == p[h].x && p[i].y == p[h].y) {
+                    if(p[i].x == p[m].x && p[i].y == p[m].y) {
                         unique1 = false;
                         break;
                     }
