@@ -52,9 +52,11 @@ void merge(int arr[], int l, int m, int r, int *count) {
     int k = l;
     while(i < n1 && j < n2) {
         if(left[i] <= right[j]) {
-            arr[k] = left[i++];
+            //arr[k] = left[i];
+            i++;
         } else {
-            arr[k] = right[j++];
+            //arr[k] = right[j];
+            j++;
             (*count)++;
         }
         k++;
