@@ -30,13 +30,11 @@ void p21() {
     int t_elapsed = (int)( 1000.0*(t_end.time - t_start.time) + (t_end.millitm - t_start.millitm) );
     
     for(int i = 0; i < count-1; i++) {
-        for(int j = i+1; j < count; j++) {
+        for(int j = 0; j < count-i-1; j++) {
             if(points[i].x > points[j].x) {
-                double x = points[i].x;
-                double y = points[i].y;
+                Point temp = points[i];
                 points[i] = points[j];
-                points[j].x = x;
-                points[j].y = y;;
+                points[j] = temp;
             }
         }
     }
