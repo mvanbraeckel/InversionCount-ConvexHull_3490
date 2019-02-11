@@ -4,6 +4,7 @@
  * @version 10/02/2019
  * @file P12.c
  * @brief A2 Problem 1.3 - b) mergesort-based, recursive divide-and-conquer algorithm to count the number of inversions
+ * REFERENCES:
  * https://www.geeksforgeeks.org/merge-sort/
  * https://www.geeksforgeeks.org/counting-inversions/
  */
@@ -26,7 +27,7 @@ void p12() {
     // count #of inversions, also track time
     ftime(&t_start);
     int* temp = (int*)malloc(sizeof(int) * 50000);
-    mergeSort(arr, temp, 0, 49999, &count);
+    mergesort(arr, temp, 0, 49999, &count);
     ftime(&t_end);
 
     // calc execution time, then display results
@@ -35,25 +36,41 @@ void p12() {
     free(temp);
 }
 
-// Sorts the input array, returns the #of inversions
-void mergeSort(int arr[], int temp[], int left, int right, int *count) {
+/**
+ * Uses mergesort to count the number of inversions using a recursive divide-and-conquer method
+ * @param int arr[] -the array of 50000 integers to be checked
+ * @param int temp[] -the temp array of arr[] to hold things during merging
+ * @param int left -the left index (begin)
+ * @param int right -the right index (end)
+ * @param int *count -holds the number of inversions
+ */
+void mergesort(int arr[], int temp[], int left, int right, int *count) {
     if(left < right) {
-        // divide array into halves, then mergeSort each separately, then merge it back together
+        // divide array into halves, then mergesort each separately, then merge it back together
         int mid = left + (right - left) / 2; // = (l+r)/2, avoids overflow for large numbers
 
         // total #of inversions = left-part + right-part + merging-part
-        mergeSort(arr, temp, left, mid, count);
-        mergeSort(arr, temp, mid+1, right, count);
+        mergesort(arr, temp, left, mid, count);
+        mergesort(arr, temp, mid+1, right, count);
         merge(arr, temp, left, mid+1, right, count);
     }
 }
 
-// Merges two sorted arrays, returns #of inversions
+/**
+ * Does the re-merging of two sorted arrays for mergesort
+ * @param int arr[] -the array of 50000 integers to be checked
+ * @param int temp[] -the temp array of arr[] to hold things during merging
+ * @param int left -the left index (begin)
+ * @param int mid -the middle index (half)
+ * @param int right -the right index (end)
+ * @param int *count -holds the number of inversions
+ */
 void merge(int arr[], int temp[], int left, int mid, int right, int *count) {
     // Initial indices of left, right, and merged subarrays
     int i = left;
     int j = mid;
     int k = left;
+
     // create sorted array using both halves
     while( i <= mid-1 && j <= right ) {
         if(arr[i] <= arr[j]) {

@@ -48,28 +48,3 @@ void selection_count(int arr[50000], int *count) {
         }
     }
 }
-
-/**
- * Reads in up to 50000 integers from a file
- * @param char* filename -the name of the text file being read
- * @param int arr[] -the integer array of 50,000 to be loaded
- */
-void read_ints(char* filename, int arr[50000]) {
-    char buffer[51] = ""; //50 char max
-
-    FILE *fp = fopen(filename, "r");
-    // checks if fopen messed up
-    if(fp == NULL) {
-        fprintf(stderr, "ERROR: File could not be opened\n");
-
-    } else {
-        // read one integer at a time until the end of the file
-        int i = 0;
-        while(!feof(fp) && i < 50000) {
-            fscanf(fp, " %s ", buffer);
-            arr[i] = atoi(buffer);
-            i++;
-        }
-    }
-    fclose(fp);
-}

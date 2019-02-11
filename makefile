@@ -34,7 +34,5 @@ git: *.c makefile
 	git remote add origin https://github.com/mvanbraeckel/InversionCount-ConvexHull_3490.git
 	git push -u origin master
 
-val:
-	valgrind --leak-check=full --track-origins=yes --show-leak-kinds=all ./bin/run
 clean:
 	rm -f *.o bin/*
