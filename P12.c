@@ -5,6 +5,7 @@
  * @file P12.c
  * @brief A2 Problem 1.3 - b) mergesort-based, recursive divide-and-conquer algorithm to count the number of inversions
  * https://www.geeksforgeeks.org/merge-sort/
+ * https://www.geeksforgeeks.org/counting-inversions/
  */
 
 #include "a2header.h"
@@ -23,7 +24,8 @@ void p12() {
     
     // count #of inversions, also track time
     ftime(&t_start);
-    int count = mergeSort(arr, 50000);
+    int* temp = (int*)malloc(sizeof(int) * 50000);
+    int count = _mergeSort(arr, temp, 0, 49999);
     ftime(&t_end);
 
     // calc execution time, then display results
@@ -31,14 +33,7 @@ void p12() {
     printf("Inversion count = %d | time = %d milliseconds\n", count, t_elapsed);
 }
 
-/* This function sorts the input array and returns the 
-   number of inversions in the array */
-int mergeSort(int arr[], int array_size) 
-{ 
-    int* temp = (int*)malloc(sizeof(int) * array_size); 
-    return _mergeSort(arr, temp, 0, array_size - 1); 
-} 
-  
+// This function sorts the input array and returns the number of inversions in the array
 /* An auxiliary recursive function that sorts the input array and 
   returns the number of inversions in the array. */
 int _mergeSort(int arr[], int temp[], int left, int right) 
