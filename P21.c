@@ -32,13 +32,15 @@ void p21() {
     for(int i = 0; i < count-1; i++) {
         for(int j = i+1; j < count; j++) {
             if(points[i].x > points[j].x) {
-                Point temp = points[i];
+                double x = points[i].x;
+                double y = points[i].y;
                 points[i] = points[j];
-                points[j] = temp;
+                points[j].x = x;
+                points[j].y = y;;
             }
         }
     }
-    
+
     printf("\n\tBounding Convex Hull Set:\n\t===============================\n");
     for(int i = 0; i < count; i++) {
         printf("\tPoint %03d: (%8.1lf, %8.1lf)\n", i+1, hull_set[i].x, hull_set[i].y);
