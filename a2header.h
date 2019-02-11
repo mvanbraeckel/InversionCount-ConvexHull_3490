@@ -41,7 +41,6 @@ void merge(int arr[], int temp[], int left, int mid, int right, int *count);
 
 void read_points(char* filename, Point p[30000]);
 int brute_convex_hull(Point p[], Point hull_set[], int size);
-void calc_hull(Point p[], Point hull_set[], int size, int *count);
 void quick_hull(Point p[], Point hull_set[], int size, Point p1, Point p2, int side, int *count) ;
 int which_side(Point p1, Point p2, Point p);
 int line_dist(Point p1, Point p2, Point p);

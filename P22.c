@@ -28,7 +28,17 @@ void p22() {
     
     // determine bounding convex hull set
     ftime(&t_start);
-    calc_hull(points, hull_set, size, &count);
+    // Find max and min point (wrt to x-coord)
+    int min_x = 0;
+    int max_x = 0;
+    for(int i = 1; i < size; i++) {
+        if( points[i].x < points[min_x].x ) min_x = i;
+        if( points[i].x > points[max_x].x ) max_x = i;
+    }
+
+    // Recursively find convex hull points on either side of line PMIN-PMAX
+    quick_hull(points, hull_set, size, points[min_x], points[max_x],  1, &count);
+    quick_hull(points, hull_set, size, points[min_x], points[max_x], -1, &count);
     ftime(&t_end);
 
     // selection sort by x-coord so it's a little easier to read
@@ -53,27 +63,6 @@ void p22() {
 }
 
 // ======================================================================
-
-/**
- * Inititates the start of the quick hull algorithm by finding min and max x-coords
- * @param Point p[] -the array of up to 30000 Points to check
- * @param Point hull_set[] -the array of Points that will contain the convex hull
- * @param int size -the size of the array
- * @param int *count -holds the number of points in the convex hull
- */
-void calc_hull(Point p[], Point hull_set[], int size, int *count) {
-    // Find max and min point (wrt to x-coord)
-    int min_x = 0;
-    int max_x = 0;
-    for(int i = 1; i < size; i++) {
-        if( p[i].x < p[min_x].x ) min_x = i;
-        if( p[i].x > p[max_x].x ) max_x = i;
-    }
-
-    // Recursively find convex hull points on either side of line PMIN-PMAX
-    quick_hull(p, hull_set, size, p[min_x], p[max_x],  1, count);
-    quick_hull(p, hull_set, size, p[min_x], p[max_x], -1, count);
-}
 
 /**
  * Main bulk of solving the Convex Hull problem using quicksort-based, divide-and-conquer algorithm Quickhull
