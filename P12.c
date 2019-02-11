@@ -26,7 +26,8 @@ void p12() {
     // count #of inversions, also track time
     ftime(&t_start);
     int* temp = (int*)malloc(sizeof(int) * 50000);
-    mergeSort(arr, temp, 0, 49999, &count);
+    //mergeSort(arr, temp, 0, 49999, &count);
+    mergesort(arr, 0, 49999, &count);
     ftime(&t_end);
 
     // calc execution time, then display results
@@ -35,7 +36,7 @@ void p12() {
     free(temp);
 }
 
-// Sorts the input array, returns the #of inversions
+/*// Sorts the input array, returns the #of inversions
 void mergeSort(int arr[], int temp[], int left, int right, int *count) {
     if(left < right) {
         // divide array into halves, then mergeSort each separately, then merge it back together
@@ -68,9 +69,9 @@ void merge(int arr[], int temp[], int left, int mid, int right, int *count) {
     while(i <= mid-1) temp[k++] = arr[i++];
     while(j <= right) temp[k++] = arr[j++];
     for(i = left; i <= right; i++) arr[i] = temp[i];
-}
+}*/
 
-/*// Merges two subarrays of arr[]. 
+// Merges two subarrays of arr[]. 
 // First subarray is arr[l..m] 
 // Second subarray is arr[m+1..r] 
 void merge(int arr[], int l, int m, int r, int *count) { 
@@ -90,12 +91,12 @@ void merge(int arr[], int l, int m, int r, int *count) {
     int k = l;
     while(i < n1 && j < n2) {
         if(left[i] <= right[j]) {
-            //arr[k] = left[i];
+            arr[k] = left[i];
             i++;
         } else {
-            //arr[k] = right[j];
+            arr[k] = right[j];
             j++;
-            (*count)++;
+            (*count) += m-i;
         }
         k++;
     } 
@@ -115,14 +116,4 @@ void mergesort(int arr[], int l, int r, int *count) {
         mergesort(arr, m+1, r, count);
         merge(arr, l, m, r, count);
     }
-}*/
-
-
-/* Function to print an array */
-void printArray(int A[], int size) {
-    for(int i = 1; i <= size; i++) {
-        printf("%d ", A[i-1]);
-        if(i % 5 == 0) printf("\n");
-    }
-    printf("\n");
 }
