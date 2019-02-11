@@ -35,7 +35,7 @@ void flush_input(char *input);
 
 void read_ints(char* filename, int arr[50000]);
 void selection_count(int arr[50000], int *count);
-int _mergeSort(int arr[], int temp[], int left, int right); 
+int mergeSort(int arr[], int temp[], int left, int right); 
 int merge(int arr[], int temp[], int left, int mid, int right); 
 /*void merge(int arr[], int l, int m, int r, int *count);
 void mergesort(int arr[], int l, int r, int *count);*/

@@ -33,9 +33,7 @@ void p12() {
     printf("Inversion count = %d | time = %d milliseconds\n", count, t_elapsed);
 }
 
-// This function sorts the input array and returns the number of inversions in the array
-/* An auxiliary recursive function that sorts the input array and 
-  returns the number of inversions in the array. */
+// Sorts the input array and returns the number of inversions in the array
 int _mergeSort(int arr[], int temp[], int left, int right) 
 { 
     int mid, inv_count = 0; 
