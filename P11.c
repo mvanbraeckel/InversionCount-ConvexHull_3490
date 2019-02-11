@@ -15,7 +15,6 @@
 void p11() {
     // declare variables
     int arr[50000];
-    int count = 0;
     struct timeb t_start, t_end;
     
     // read in the data
@@ -25,7 +24,7 @@ void p11() {
     // count #of inversions, also track time
     printf("\n...counting inversions...\n");
     ftime(&t_start);
-    selection_count(arr, size, &count);
+    int count = selection_count(arr, size);
     ftime(&t_end);
 
     // calc execution time, then display results
@@ -40,13 +39,14 @@ void p11() {
  * @param int arr[] -the array of uintegers to check
  * @param int *count -pass by ref to store number of inversions
  */
-void selection_count(int arr[], int size, int *count) {
-    *count = 0;
+int selection_count(int arr[], int size) {
+    int count = 0;
     for(int i = 0; i < size-1; i++) {
         for(int j = i+1; j < size; j++) {
             if(arr[i] > arr[j]) {
-                (*count)++;
+                count++;
             }
         }
     }
+    return count;
 }
