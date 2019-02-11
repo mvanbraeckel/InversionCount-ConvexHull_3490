@@ -15,7 +15,7 @@
 * NOTE: Please see my in-code comments for more details
 * NOTE: Significant references used have been sourced in my code
 
-* Assumption: Convex Hull: emphasis on "minimum" convex hull set that encomappases the entire set -- i.e. If a point on the hull is between two other hull points, but not a vertex, it's not part of the "minimum" convex hull set
+* Assumption: Convex Hull: emphasis on "minimum" convex hull set that encomappases the entire set -- i.e. If a point on the hull is between two other hull points, but not a vertex, it's not part of the "minimum" convex hull set (i.e. ignoring colinear points and duplicate points to get "minimum" convex-hull set, instead of the set of all points on the convex hull)
 * Assumption: Inversions are counted on the original data set (no sorting while counting if sorting would interfere with/alter results)
 
 ## Makefile, then Run
