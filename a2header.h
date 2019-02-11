@@ -35,8 +35,11 @@ void flush_input(char *input);
 
 void read_ints(char* filename, int arr[50000]);
 void selection_count(int arr[50000], int *count);
-void merge(int arr[], int l, int m, int r, int *count);
-void mergesort(int arr[], int l, int r, int *count);
+int mergeSort(int arr[], int array_size);
+int _mergeSort(int arr[], int temp[], int left, int right); 
+int merge(int arr[], int temp[], int left, int mid, int right); 
+/*void merge(int arr[], int l, int m, int r, int *count);
+void mergesort(int arr[], int l, int r, int *count);*/
 void printArray(int A[], int size);
 
 void read_points(char* filename, Point p[30000]);

@@ -24,7 +24,7 @@ void p12() {
     
     // count #of inversions, also track time
     ftime(&t_start);
-    mergesort(arr, 0, 49999, &count);
+    mergeSort(arr, 50000);
     ftime(&t_end);
 
     // calc execution time, then display results
@@ -32,7 +32,75 @@ void p12() {
     printf("Inversion count = %d | time = %d milliseconds\n", count, t_elapsed);
 }
 
-// Merges two subarrays of arr[]. 
+/* This function sorts the input array and returns the 
+   number of inversions in the array */
+int mergeSort(int arr[], int array_size) 
+{ 
+    int* temp = (int*)malloc(sizeof(int) * array_size); 
+    return _mergeSort(arr, temp, 0, array_size - 1); 
+} 
+  
+/* An auxiliary recursive function that sorts the input array and 
+  returns the number of inversions in the array. */
+int _mergeSort(int arr[], int temp[], int left, int right) 
+{ 
+    int mid, inv_count = 0; 
+    if (right > left) { 
+        /* Divide the array into two parts and call _mergeSortAndCountInv() 
+       for each of the parts */
+        mid = (right + left) / 2; 
+  
+        /* Inversion count will be sum of inversions in left-part, right-part 
+      and number of inversions in merging */
+        inv_count = _mergeSort(arr, temp, left, mid); 
+        inv_count += _mergeSort(arr, temp, mid + 1, right); 
+  
+        /*Merge the two parts*/
+        inv_count += merge(arr, temp, left, mid + 1, right); 
+    } 
+    return inv_count; 
+} 
+  
+/* This funt merges two sorted arrays and returns inversion count in 
+   the arrays.*/
+int merge(int arr[], int temp[], int left, int mid, int right) 
+{ 
+    int i, j, k; 
+    int inv_count = 0; 
+  
+    i = left; /* i is index for left subarray*/
+    j = mid; /* j is index for right subarray*/
+    k = left; /* k is index for resultant merged subarray*/
+    while ((i <= mid - 1) && (j <= right)) { 
+        if (arr[i] <= arr[j]) { 
+            temp[k++] = arr[i++]; 
+        } 
+        else { 
+            temp[k++] = arr[j++]; 
+  
+            /*this is tricky -- see above explanation/diagram for merge()*/
+            inv_count = inv_count + (mid - i); 
+        } 
+    } 
+  
+    /* Copy the remaining elements of left subarray 
+   (if there are any) to temp*/
+    while (i <= mid - 1) 
+        temp[k++] = arr[i++]; 
+  
+    /* Copy the remaining elements of right subarray 
+   (if there are any) to temp*/
+    while (j <= right) 
+        temp[k++] = arr[j++]; 
+  
+    /*Copy back the merged elements to original array*/
+    for (i = left; i <= right; i++) 
+        arr[i] = temp[i]; 
+  
+    return inv_count; 
+} 
+
+/*// Merges two subarrays of arr[]. 
 // First subarray is arr[l..m] 
 // Second subarray is arr[m+1..r] 
 void merge(int arr[], int l, int m, int r, int *count) { 
@@ -59,12 +127,12 @@ void merge(int arr[], int l, int m, int r, int *count) {
             j++;
             (*count)++;
         }
-        //k++;
+        k++;
     } 
   
     // Copy the remaining elements of left and right arrays, if there are any
-    //while(i < n1) arr[k++] = left[i++];
-    //while(j < n2) arr[k++] = right[j++];
+    while(i < n1) arr[k++] = left[i++];
+    while(j < n2) arr[k++] = right[j++];
 } 
   
 // l is for left index and r is right index of the sub-array of arr to be sorted
@@ -73,11 +141,12 @@ void mergesort(int arr[], int l, int r, int *count) {
         // Same as (l+r)/2, but avoids overflow for large l and h
         int m = l+(r-l)/2;
         // Sort first and second halves
-        mergesort(arr, l, m, &(*count));
-        mergesort(arr, m+1, r, &(*count));
-        merge(arr, l, m, r, &(*count));
+        mergesort(arr, l, m, count);
+        mergesort(arr, m+1, r, count);
+        merge(arr, l, m, r, count);
     }
-}
+}*/
+
 
 /* Function to print an array */
 void printArray(int A[], int size) {
