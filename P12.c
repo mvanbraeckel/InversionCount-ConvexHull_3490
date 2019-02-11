@@ -26,8 +26,7 @@ void p12() {
     // count #of inversions, also track time
     ftime(&t_start);
     int* temp = (int*)malloc(sizeof(int) * 50000);
-    //mergeSort(arr, temp, 0, 49999, &count);
-    mergesort(arr, 0, 49999, &count);
+    mergeSort(arr, temp, 0, 49999, &count);
     ftime(&t_end);
 
     // calc execution time, then display results
@@ -36,7 +35,7 @@ void p12() {
     free(temp);
 }
 
-/*// Sorts the input array, returns the #of inversions
+// Sorts the input array, returns the #of inversions
 void mergeSort(int arr[], int temp[], int left, int right, int *count) {
     if(left < right) {
         // divide array into halves, then mergeSort each separately, then merge it back together
@@ -69,51 +68,4 @@ void merge(int arr[], int temp[], int left, int mid, int right, int *count) {
     while(i <= mid-1) temp[k++] = arr[i++];
     while(j <= right) temp[k++] = arr[j++];
     for(i = left; i <= right; i++) arr[i] = temp[i];
-}*/
-
-// Merges two subarrays of arr[]. 
-// First subarray is arr[l..m] 
-// Second subarray is arr[m+1..r] 
-void merge(int arr[], int l, int m, int r, int *count) { 
-    // create temp arrays
-    int n1 = m - l + 1;
-    int n2 =  r - m;
-    int left[n1], right[n2];
-
-    // Copy data to temp arrays
-    for(int i = 0; i < n1; i++) left[i] = arr[l + i];
-    for(int j = 0; j < n2; j++) right[j] = arr[m + 1+ j];
-
-    // Merge the temp arrays back into arr[l..r]
-    // Initial indices of 1st, 2nd, merged subarrays
-    int i = 0;
-    int j = 0;
-    int k = l;
-    while(i < n1 && j < n2) {
-        if(left[i] <= right[j]) {
-            arr[k] = left[i];
-            i++;
-        } else {
-            arr[k] = right[j];
-            j++;
-            (*count) += m-i;
-        }
-        k++;
-    } 
-  
-    // Copy the remaining elements of left and right arrays, if there are any
-    while(i < n1) arr[k++] = left[i++];
-    while(j < n2) arr[k++] = right[j++];
-} 
-  
-// l is for left index and r is right index of the sub-array of arr to be sorted
-void mergesort(int arr[], int l, int r, int *count) {
-    if(l < r) {
-        // Same as (l+r)/2, but avoids overflow for large l and h
-        int m = l+(r-l)/2;
-        // Sort first and second halves
-        mergesort(arr, l, m, count);
-        mergesort(arr, m+1, r, count);
-        merge(arr, l, m, r, count);
-    }
 }
