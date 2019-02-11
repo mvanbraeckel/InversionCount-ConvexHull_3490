@@ -69,6 +69,8 @@ int brute_convex_hull(Point p[30000], Point hull_set[30000]) {
             // if all other points are on the left or in-line, then it's a bounding point
             for(int k = 0; k < 30000; k++) {
                 if(k == i || k == j) continue; // skip because same point
+                if(p[k].x == p[i].x && p[k].x == p[i].y) continue;
+                 if(p[k].x == p[j].x && p[k].x == p[j].y) continue;
 
                 // calc and check which side of line Point K is on
                 double d = (p[k].x-p[i].x)*(p[j].y-p[i].y) - (p[k].y-p[i].y)*(p[j].x-p[i].x);
