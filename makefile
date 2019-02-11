@@ -7,7 +7,7 @@
 CC = gcc
 CFLAGS = -g -Wall -std=c11 -pedantic
 
-all: P11 P12 P21 P22 main git
+all: P11 P12 P21 P22 main
 
 main: P11 P21 main.c a2header.h
 	$(CC) $(CFLAGS) -c main.c -o bin/main.o
