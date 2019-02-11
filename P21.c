@@ -59,6 +59,8 @@ void p21() {
  */
 int brute_convex_hull(Point p[30000], Point hull_set[30000]) {
     int h = 0; // holds #of bounding points in the convex hull set
+    Point temp;
+    temp.x = temp.y = 0;
 
     // create line from Point I to Point J
     for(int i = 0; i < 30000; i++) {
@@ -66,6 +68,7 @@ int brute_convex_hull(Point p[30000], Point hull_set[30000]) {
             if(i == j) continue; //skip because same point
             if(p[i].x == p[j].x && p[i].y == p[j].y) continue;
             bool all_left = true; //reset
+            bool in_line = false;
             
             // if all other points are on the left or in-line, then it's a bounding point
             for(int k = 0; k < 30000; k++) {
@@ -75,9 +78,16 @@ int brute_convex_hull(Point p[30000], Point hull_set[30000]) {
 
                 // calc and check which side of line Point K is on
                 double d = (p[k].x-p[i].x)*(p[j].y-p[i].y) - (p[k].y-p[i].y)*(p[j].x-p[i].x);
-                if(d >= 0) {
+                if(d > 0) {
                     all_left = false;
                     break;
+                } else if(d == 0) { // diff points, in-line
+                    in_line = true;
+                    if(p[k].x == p[i].x) { // x-coord's same
+
+                    } else { // y-coord's are equal
+                        
+                    }
                 }
             }
 
@@ -85,15 +95,13 @@ int brute_convex_hull(Point p[30000], Point hull_set[30000]) {
             if(all_left) {
                 //printf("\tPoint %d: (%8.1lf, %8.1lf)\n", h+1, p[i].x, p[i].y);
                 bool unique1 = true;
+                bool unique2 = true;
                 for(int m = 0; m < h; m++) {
-                    if(p[i].x == hull_set[m].x && p[i].y == hull_set[m].y) {
-                        unique1 = false;
-                        break;
-                    }
+                    if(p[i].x == hull_set[m].x && p[i].y == hull_set[m].y) unique1 = false;
+                    if(p[j].x == hull_set[m].x && p[j].y == hull_set[m].y) unique2 = false;
                 }
-                if(unique1) {
-                    hull_set[h++] = p[i];
-                }
+                if(unique1) hull_set[h++] = p[i];
+                if(unique2) hull_set[h++] = p[j];
             }
         }
     }
