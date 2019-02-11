@@ -81,8 +81,17 @@ int brute_convex_hull(Point p[30000], Point hull_set[30000]) {
             // if it's good, add to bounding set and start checking a new one
             if(all_left) {
                 //printf("\tPoint %d: (%8.1lf, %8.1lf)\n", h+1, p[i].x, p[i].y);
-                hull_set[h++] = p[i];
-                break;
+                bool unique1 = true;
+                for(int m = 0; m < h; m++) {
+                    if(p[i].x == p[h].x && p[i].y == p[h].y) {
+                        unique1 = false;
+                        break;
+                    }
+                }
+                if(unique1) {
+                    hull_set[h++] = p[i];
+                    break;
+                }
             }
         }
     }
