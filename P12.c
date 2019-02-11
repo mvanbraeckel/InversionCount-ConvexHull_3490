@@ -73,9 +73,9 @@ void mergesort(int arr[], int l, int r, int *count) {
         // Same as (l+r)/2, but avoids overflow for large l and h
         int m = l+(r-l)/2;
         // Sort first and second halves
-        mergesort(arr, l, m, *count);
-        mergesort(arr, m+1, r, *count);
-        merge(arr, l, m, r, *count);
+        mergesort(arr, l, m, &(*count));
+        mergesort(arr, m+1, r, &(*count));
+        merge(arr, l, m, r, &(*count));
     }
 }
 
