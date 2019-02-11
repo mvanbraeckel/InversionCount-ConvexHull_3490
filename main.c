@@ -114,7 +114,7 @@ void read_points(char* filename, Point p[30000]) {
         while(!feof(fp) && i < 30000) {
             // read in x-value
             fscanf(fp, " %s ", buffer);
-            p[i].x = atoi(buffer);
+            p[i].x = atof(buffer);
             // read in y-value
             fscanf(fp, " %s ", buffer);
             p[i].y = atof(buffer);
